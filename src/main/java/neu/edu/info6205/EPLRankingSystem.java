@@ -2,6 +2,7 @@ package main.java.neu.edu.info6205;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class EPLRankingSystem {
 	public static void main(String[] args) {
@@ -102,11 +103,142 @@ public class EPLRankingSystem {
 			System.out.println(prob[i]);
 		}
 		*/
-		List<EPLTeam> result = new ArrayList<EPLTeam>();
-		result = EPLSimulation.eplSimulation2020(history);
-		
-		for (EPLTeam i : result) {
-			System.out.println(i);
+		System.out.println("#######Welcome to EPL data search and forecast simulation system!#########");
+		Scanner input=new Scanner(System.in);
+		while (true){
+			System.out.println("Input '1' to search history data.");
+			System.out.println("Input '2' to enter 2020EPL Simulation System.");
+			System.out.println("Input '3' to quit.");
+			int n = input.nextInt();
+			if (n == 1) {
+				while(true) {
+					System.out.println("###EPL history data System! Input '0' to back to main menu");
+					System.out.println("Input years to search the data of that year(2000-2019)");
+					int m = input.nextInt();
+					if (m == 0) {
+						break;
+					}
+					else if ( m >= 2000 && m <=2019) {
+						List<EPLMatchResult> historyChoose = new ArrayList<EPLMatchResult>();
+						if (m == 2000) {
+							historyChoose = history2000_2001;
+						}
+						else if(m == 2001) {
+							historyChoose = history2001_2002;
+						}
+						else if(m == 2001) {
+							historyChoose = history2001_2002;
+						}
+						else if(m == 2002) {
+							historyChoose = history2002_2003;
+						}
+						else if(m == 2003) {
+							historyChoose = history2003_2004;
+						}
+						else if(m == 2004) {
+							historyChoose = history2004_2005;
+						}
+						else if(m == 2005) {
+							historyChoose = history2005_2006;
+						}
+						else if(m == 2006) {
+							historyChoose = history2006_2007;
+						}
+						else if(m == 2007) {
+							historyChoose = history2007_2008;
+						}
+						else if(m == 2008) {
+							historyChoose = history2008_2009;
+						}
+						else if(m == 2009) {
+							historyChoose = history2009_2010;
+						}
+						else if(m == 2011) {
+							historyChoose = history2011_2012;
+						}
+						else if(m == 2012) {
+							historyChoose = history2012_2013;
+						}
+						else if(m == 2013) {
+							historyChoose = history2013_2014;
+						}
+						else if(m == 2014) {
+							historyChoose = history2014_2015;
+						}
+						else if(m == 2015) {
+							historyChoose = history2015_2016;
+						}
+						else if(m == 2016) {
+							historyChoose = history2016_2017;
+						}
+						else if(m == 2017) {
+							historyChoose = history2017_2018;
+						}
+						else if(m == 2018) {
+							historyChoose = history2018_2019;
+						}
+						else{
+							historyChoose = history2019_2020;
+						}
+						System.out.println("####Show the team with most wins, input 1:");
+						System.out.println("####Show the team with most points, input 2:");
+						System.out.println("####Show the team sorted with wins, input 3");
+						System.out.println("####Show the team sorted with points, input 4");
+						int k = input.nextInt();
+						if (k == 1) {
+							EPLTeam team = DataStatistics.WinMostTeam(historyChoose);
+							System.out.println(team);
+						}
+						else if(k ==2) {
+							EPLTeam team = DataStatistics.PointMostTeam(historyChoose);
+							System.out.println(team);
+						}
+						else if(k ==3) {
+							List<EPLTeam> team = new ArrayList<EPLTeam>();
+							team = DataStatistics.WinMostSort(historyChoose);
+							for (EPLTeam arg: team) {
+								System.out.println(arg);
+							}
+						}
+						else if(k ==4) {
+							List<EPLTeam> team = new ArrayList<EPLTeam>();
+							team = DataStatistics.PointMostSort(historyChoose);
+							for (EPLTeam arg: team) {
+								System.out.println(arg);
+							}
+						}
+						else System.out.println("Illegal Input!");                   
+					}
+					else {
+						System.out.println("Illegal Input! Please input again");
+					}
+				}
+			}
+			else if (n == 2) {
+				List<EPLTeam> result = new ArrayList<EPLTeam>();
+				result = EPLSimulation.eplSimulation2020(history);
+				System.out.println("##Result##");
+				for (EPLTeam i : result) {
+					System.out.println(i);
+				}
+			}
+			else if (n == 3) {
+				break;
+			}
+			else {
+				System.out.println("Illegal Input! Please input again");
+				continue;
+			}
 		}
+		
+		//Demo for DataStatistics:
+		//DataStatisticsDemo.demo();
+		//EPLSimulation for 2020
+				/*List<EPLTeam> result = new ArrayList<EPLTeam>();
+				result = EPLSimulation.eplSimulation2020(history);
+				System.out.println("##Result##");
+				for (EPLTeam i : result) {
+					System.out.println(i);
+				}*/
 	}
 }

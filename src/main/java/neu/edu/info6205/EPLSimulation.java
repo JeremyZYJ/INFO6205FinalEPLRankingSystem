@@ -10,13 +10,14 @@ public class EPLSimulation {
 	public static List<EPLTeam> eplSimulation2020(List<EPLMatchResult> history){
 		//2020 team set add by 2019-2020.csv
 		Set<String> team2020 = new HashSet<String>();
-		
+		System.out.println("#########2020EPLSimulation#########");
 		List<EPLMatchResult> history2019_2020 = new ArrayList<EPLMatchResult>();
 		history2019_2020 = CSVUtil.historyRead("2019-2020.csv");
 		for (EPLMatchResult i : history2019_2020) {
 			team2020.add(i.getHomeTeam());
 			team2020.add(i.getAwayTeam());
 		}
+		System.out.println("All team:");
 		System.out.println(team2020);
 		
 		//create teamStatistics
@@ -27,7 +28,7 @@ public class EPLSimulation {
 		//build a prob chart for teams
 		
 		//proceed 1000 times simulation
-		int i = 1000;
+		int i = 10;
 		while (i > 0) {
 			for (int m = 0; m < 20; m++) {
 				for (int n = m; n < 20; n++) {
@@ -62,9 +63,9 @@ public class EPLSimulation {
 		
 		for (EPLTeam team : teamStatistics) {
 			double totalPoints = team.getTeamPoints();
-			double Points = totalPoints /1000;
+			double Points = totalPoints /10;
 			team.setTeamPoints(Points);
-			team.setWinCount(team.getWinCount()/ 1000);
+			team.setWinCount(team.getWinCount()/ 10);
 		}
 		//result of Simulation
 		List<EPLTeam> result = new ArrayList<EPLTeam>();
