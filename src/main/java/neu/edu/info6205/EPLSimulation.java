@@ -28,7 +28,7 @@ public class EPLSimulation {
 		//build a prob chart for teams
 		
 		//proceed 1000 times simulation
-		int i = 10;
+		int i = 1000;
 		while (i > 0) {
 			for (int m = 0; m < 20; m++) {
 				for (int n = m; n < 20; n++) {
@@ -63,9 +63,9 @@ public class EPLSimulation {
 		
 		for (EPLTeam team : teamStatistics) {
 			double totalPoints = team.getTeamPoints();
-			double Points = totalPoints /10;
+			double Points = totalPoints /1000;
 			team.setTeamPoints(Points);
-			team.setWinCount(team.getWinCount()/ 10);
+			team.setWinCount(team.getWinCount()/ 1000);
 		}
 		//result of Simulation
 		List<EPLTeam> result = new ArrayList<EPLTeam>();
